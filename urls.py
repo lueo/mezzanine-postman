@@ -63,6 +63,7 @@ urlpatterns = patterns("",
     # ``mezzanine.urls``, go right ahead and take the parts you want
     # from it, and use them directly below instead of using
     # ``mezzanine.urls``.
+    url("^messages/", include("postman.urls")),
     ("^", include("mezzanine.urls")),
 
 )
