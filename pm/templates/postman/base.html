@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load i18n %}
+{% load postman_tags %}
+
+{% block meta_title %}
+    {% if page %}
+        {{ page.richtextpage.title }}
+    {% else %}
+        {% trans "Messaging" %}
+    {% endif %}
+{% endblock %}
+
+{% block extrahead %}
+    {% block extra_css %}{% endblock %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/message.css">
+    {% block extra_js %}{% endblock %}
+{% endblock %}
+
+
+{% block title %}{% trans "Messaging" %}{% endblock %}
+
+{% block body_id %}messages{% endblock %}
+
+{% block breadcrumb_menu %}
+    {{ block.super }}
+    <li>
+        {% spaceless %}
+        {% trans "Messaging" %}  
+        {% endspaceless %}
+    </li>
+{% endblock %}
+
+
+{% block main%}
+    {% block content %}
+    {% endblock %}
+{% endblock %}
+
+{% block right_panel %}
+{% block postman_menu %}
+<ul id="postman_menu">
+    {% postman_unread as unread_count %}
+    <li><a href="{% url 'postman_inbox' %} ">
+            &raquo;&nbsp;{% trans "Inbox" %}
+            {% if unread_count %}
+                <strong>({{ unread_count }})</strong>
+            {% endif %}
+        </a>
+    </li>
+    <li><a href="{% url 'postman_sent' %} ">&raquo;&nbsp;{% trans "Sent Messages" %}</a></li>
+    <li><a href="{% url 'postman_write' %} ">&raquo;&nbsp;{% trans "Write" %}</a></li>
+    <li><a href="{% url 'postman_archives' %} ">&raquo;&nbsp;{% trans "Archives" %}</a></li>
+    <li><a href="{% url 'postman_trash' %} ">&raquo;&nbsp;{% trans "Trash" %}</a></li>
+</ul>
+{% endblock %}
+{% endblock %}

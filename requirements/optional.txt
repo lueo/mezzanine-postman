@@ -1,0 +1,5 @@
+django-compressor
+django-filebrowser
+django-grappelli
+django-extensions
+django-debug-toolbar
