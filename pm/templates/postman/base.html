@@ -44,7 +44,7 @@
     <li><a href="{% url 'postman_inbox' %} ">
             &raquo;&nbsp;{% trans "Inbox" %}
             {% if unread_count %}
-                <strong>({{ unread_count }})</strong>
+                <span class="badge badge-important">{{ unread_count }}</span>
             {% endif %}
         </a>
     </li>

@@ -4,3 +4,4 @@
 .pm_message.pm_unread .pm_subject  { font-weight: bolder; }
 .pm_message.pm_pending .pm_header  { background-color: #FFC; }
 .pm_message.pm_rejected .pm_header { background-color: #FDD; }
+.pm_message.pm_header            { font-style: italic; color: grey; }

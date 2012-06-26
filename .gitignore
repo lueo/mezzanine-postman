@@ -32,3 +32,5 @@ pip-log.txt
 
 mezzanine
 postman
+local_settings.py
+dev.db
