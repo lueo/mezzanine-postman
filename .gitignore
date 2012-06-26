@@ -30,7 +30,7 @@ pip-log.txt
 .project
 .pydevproject
 
-mezzanine
-postman
+/mezzanine
+/postman
 local_settings.py
 dev.db

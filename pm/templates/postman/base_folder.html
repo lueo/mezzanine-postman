@@ -41,8 +41,8 @@
           </button>
           <ul class="dropdown-menu">
             {% block pm_by_modes %}
-            <li style="pm_by_modes"><a href="{% if by_message %}{{ by_conversation_url }}{% else %}#{% endif %}">{% trans "by conversation" %}</a></li>
-            <li style="pm_by_modes"><a href="{% if by_conversation %}{{ by_message_url }}{% else %}#{% endif %}">{% trans "by message" %}</a></li>
+            <li><span class="pm_by_modes"><a href="{% if by_message %}{{ by_conversation_url }}{% else %}#{% endif %}">{% trans "by conversation" %}</a></span</li>
+            <li><span class="pm_by_modes"><a href="{% if by_conversation %}{{ by_message_url }}{% else %}#{% endif %}">{% trans "by message" %}</a></span></li>
             {% endblock pm_by_modes %}
           </ul>
         </div>
