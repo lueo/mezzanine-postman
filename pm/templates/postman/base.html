@@ -4,54 +4,44 @@
 {% load postman_tags %}
 
 {% block meta_title %}
-    {% if page %}
-        {{ page.richtextpage.title }}
-    {% else %}
-        {% trans "Messaging" %}
-    {% endif %}
+{% if page %}
+{{ page.richtextpage.title }}
+{% else %}
+{% trans "Messaging" %}
+{% endif %}
 {% endblock %}
 
 {% block extrahead %}
-    {% block extra_css %}{% endblock %}
-        <link rel="stylesheet" href="{{ STATIC_URL }}css/message.css">
-    {% block extra_js %}{% endblock %}
+{% block extra_css %}{% endblock %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/message.css">
+{% block extra_js %}{% endblock %}
 {% endblock %}
-
 
 {% block title %}{% trans "Messaging" %}{% endblock %}
 
 {% block body_id %}messages{% endblock %}
 
 {% block breadcrumb_menu %}
-    {{ block.super }}
-    <li>
-        {% spaceless %}
-        {% trans "Messaging" %}  
-        {% endspaceless %}
-    </li>
+{{ block.super }}
 {% endblock %}
 
-
 {% block main%}
-    {% block content %}
-    {% endblock %}
+{% block content %}
+{% endblock %}
 {% endblock %}
 
 {% block right_panel %}
 {% block postman_menu %}
-<ul id="postman_menu">
-    {% postman_unread as unread_count %}
-    <li><a href="{% url 'postman_inbox' %} ">
-            &raquo;&nbsp;{% trans "Inbox" %}
-            {% if unread_count %}
-                <span class="badge badge-important">{{ unread_count }}</span>
-            {% endif %}
-        </a>
-    </li>
-    <li><a href="{% url 'postman_sent' %} ">&raquo;&nbsp;{% trans "Sent Messages" %}</a></li>
-    <li><a href="{% url 'postman_write' %} ">&raquo;&nbsp;{% trans "Write" %}</a></li>
-    <li><a href="{% url 'postman_archives' %} ">&raquo;&nbsp;{% trans "Archives" %}</a></li>
-    <li><a href="{% url 'postman_trash' %} ">&raquo;&nbsp;{% trans "Trash" %}</a></li>
+<ul class="nav nav-list" id="postman_menu">
+<li class="nav-header">{% trans "Messaging" %}</li>	
+  <li><a href="{% url 'postman_write' %}"><i class="icon-pencil"></i> {% trans "Compose" %}</a></li>
+  {% postman_unread as unread_count %}
+  <li><a href="{% url 'postman_inbox' %} "><i class="icon-inbox"></i> {% trans "Inbox" %}
+    {% if unread_count %} <span class="badge badge-important">{{ unread_count }}</span> {% endif %} </a></li>
+  <li><a href="{% url 'postman_sent' %}"><i class="icon-envelope"></i> {% trans "Sent Messages" %}</a></li>
+  <li><a href="{% url 'postman_archives' %}"><i class="icon-file"></i> {% trans "Archives" %}</a></li>
+  <li class="divider"></li>
+  <li><a href="{% url 'postman_trash' %}"><i class="icon-trash"></i> {% trans "Trash" %}</a></li>
 </ul>
 {% endblock %}
 {% endblock %}
