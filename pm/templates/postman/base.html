@@ -23,6 +23,13 @@
 
 {% block breadcrumb_menu %}
 {{ block.super }}
+<li><a href="{{ page.get_absolute_url }}">{% if page %}
+  {{ page.richtextpage.title }}
+  {% else %}
+  {% trans "Messaging" %}
+  {% endif %}</a></li>
+  <span class="divider">/</span>
+<li class="active">{% block pm_folder_title %}{% endblock %}{% block pm_write_title %}{% endblock %}</li>
 {% endblock %}
 
 {% block main%}
@@ -33,7 +40,7 @@
 {% block right_panel %}
 {% block postman_menu %}
 <ul class="nav nav-list" id="postman_menu">
-<li class="nav-header">{% trans "Messaging" %}</li>	
+  <li class="nav-header">{% trans "Messaging" %}</li>
   <li><a href="{% url 'postman_write' %}"><i class="icon-pencil"></i> {% trans "Compose" %}</a></li>
   {% postman_unread as unread_count %}
   <li><a href="{% url 'postman_inbox' %} "><i class="icon-inbox"></i> {% trans "Inbox" %}
