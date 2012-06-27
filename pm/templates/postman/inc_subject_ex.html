@@ -1,12 +1,12 @@
 {% comment %}
 This file is intended to be included, such as in postman/base_folder.html:
-    {% include "postman/inc_subject_ex.html" %}
+{% include "postman/inc_subject_ex.html" %}
 
 It provides an extended subject, as a replacement to a simple {{ message.subject }} tag.
 Enhancements are:
 * limit the subject length to a few words
 * if there is still room up to a maximum number of words, then add the very first words of the body,
-  in a grey style.
+in a grey style.
 
 Examples:
 With a total of at most 12 words, and 5 words of subject.
@@ -18,5 +18,12 @@ With subject: "a subject of great interest for you":
 With subject: "a great interest":
 "a great interest - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed ..."
 
-{% endcomment %}{% load postman_tags %}{% with message.subject|truncatewords:5 as truncated_subject %}{{ truncated_subject }}
-{% with truncated_subject|wordcount as subject_wc %}{% with 12|sub:subject_wc as wc %}{% if message.body and wc > 0 %} - <span style="color: grey">{{ message.body|truncatewords:wc }}</span>{% endif %}{% endwith %}{% endwith %}{% endwith %}
+{% endcomment %}{% spaceless %}
+
+{% load postman_tags %}
+
+{% with message.subject|truncatechars:16 as truncated_subject %}{{ truncated_subject }}{% if message.body and truncated_subject|length > 0 %} - <span style="color: gray">{{ message.body|truncatechars:18 }}</span>{% endif %}
+
+{% endwith %}
+
+{% endspaceless %}

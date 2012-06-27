@@ -4,7 +4,7 @@
 {% block content %}
 <div id="postman">
   <h1>{% block pm_folder_title %}{% endblock %}</h1>
-  {% autopaginate pm_messages %}
+  {% autopaginate pm_messages 5 %}
   {% if invalid_page %}
   <p>
     {% trans "Sorry, this page number is invalid." %}
@@ -20,29 +20,28 @@
         <div class="btn-group">
           {% block pm_archive_button %}
           <button type="submit" onclick="this.form.action='{% url 'postman_archive' %}'" class="btn">
-            <i class="icon-file"></i>{% trans "Archive" %}
+            <i class="icon-file"></i> {% trans "Archive" %}
           </button>
           {% endblock %}
           {% block pm_delete_button %}
           <button type="submit" onclick="this.form.action='{% url 'postman_delete' %}'" class="btn">
-            <i class="icon-trash"></i>{% trans "Delete" %}
+            <i class="icon-trash"></i> {% trans "Delete" %}
           </button>
           {% endblock %}
           {% block pm_undelete_button %}
           <button type="submit" onclick="this.form.action='{% url 'postman_undelete' %}'" class="btn">
-            <i class="icon-ok"></i>{% trans "Undelete" %}
+            <i class="icon-ok"></i> {% trans "Undelete" %}
           </button>
           {% endblock %}
         </div>
         <div class="btn-group" style="float:right;">
           <button class="btn dropdown-toggle" data-toggle="dropdown">
-            View Mode
-            <span class="caret"></span>
+            <i class="icon-th-list"></i> {% trans "View Mode" %} <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
             {% block pm_by_modes %}
-            <li><span class="pm_by_modes"><a href="{% if by_message %}{{ by_conversation_url }}{% else %}#{% endif %}">{% trans "by conversation" %}</a></span</li>
-            <li><span class="pm_by_modes"><a href="{% if by_conversation %}{{ by_message_url }}{% else %}#{% endif %}">{% trans "by message" %}</a></span></li>
+            <li><span class="pm_by_modes"><a href="{% if by_message %}{{ by_conversation_url }}{% else %}#{% endif %}"> {% trans "by conversation" %}</a></span</li>
+            <li><span class="pm_by_modes"><a href="{% if by_conversation %}{{ by_message_url }}{% else %}#{% endif %}"> {% trans "by message" %}</a></span></li>
             {% endblock pm_by_modes %}
           </ul>
         </div>
@@ -94,8 +93,9 @@
           {% else %}
           {{message.get_absolute_url }}
           {% endif %}
-          {% endspaceless %}?next={{ current_url|urlencode }}"> {% include "postman/inc_subject_ex.html" %} </a> {% endblock %}
-          {% if message.is_replied %}</em>{% endif %}{% if message.is_new %}</strong>{% endif %}</td>
+          {% endspaceless %}?next={{ current_url|urlencode }}">{% include "postman/inc_subject_ex.html" %}</a> {% endblock %}
+          {% if message.is_replied %}</em>{% endif %}
+          {% if message.is_new %}</strong>{% endif %}</td>
 
           <td>{{ message.sent_at|compact_date:_("g:i A,M j,n/j/y") }}</td>
         </tr>
@@ -110,6 +110,7 @@
   </p>
   {% endif %}
   {% endif %}
+
   {% block pm_footer_info %}{% endblock %}
 </div>
 {% endblock content %}
