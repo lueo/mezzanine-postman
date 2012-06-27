@@ -12,7 +12,7 @@ admin.autodiscover()
 # to the project's homepage.
 
 urlpatterns = patterns("",
-    ("^admin/", include(admin.site.urls)),
+    (r"^admin/", include(admin.site.urls)),
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
@@ -24,7 +24,7 @@ urlpatterns = patterns("",
     # one homepage pattern, so if you use a different one, comment this
     # one out.
 
-    url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+    url(r"^$", direct_to_template, {"template": "index.html"}, name="home"),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
@@ -63,8 +63,9 @@ urlpatterns = patterns("",
     # ``mezzanine.urls``, go right ahead and take the parts you want
     # from it, and use them directly below instead of using
     # ``mezzanine.urls``.
-    url("^messages/", include("postman.urls")),
-    ("^", include("mezzanine.urls")),
+    url(r"^messages/", include("postman.urls")),
+    url(r'^notices/', include("notification.urls")),
+    (r"^", include("mezzanine.urls")),
 
 )
 
