@@ -4,7 +4,8 @@
 {% block content %}
 <div id="postman">
   <h1>{% block pm_folder_title %}{% endblock %}</h1>
-  {% autopaginate pm_messages 5 %}
+  {% autopaginate pm_messages 10 %}
+
   {% if invalid_page %}
   <p>
     {% trans "Sorry, this page number is invalid." %}
